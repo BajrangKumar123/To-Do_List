@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add New Task</title>
+    <link rel="stylesheet" href="/style.css">
+</head>
+
+<body>
+    <div class="card">
+        <div class="card2">
+            <h1>To-Do List</h1>
+            <div class="input-group">
+                <input placeholder="Enter new task here" type="text" id="input-field">
+                <button id="btn" type="button" class="submit-button" onclick="addTask()"><span>ADD TASK</span></button>
+            </div>
+            <p id="p1" style="list-style: none;"></p>
+        </div>
+    </div>
+</body>
+<script>
+
+    //...........Function for Adding New Task............
+
+    function addTask() {
+        var inp = document.getElementById("input-field").value;
+        var list = document.createElement("li");
+        var text = document.createTextNode(inp);
+        list.appendChild(text);
+
+        if (inp === "") {
+            alert("You must write Something!");
+        }
+        else {
+            var textList = document.getElementById("p1")
+            textList.appendChild(list);
+        }
+
+        //.....Adding Remove Button with each Entries.....
+
+        var listTag = document.getElementsByTagName("LI");
+        var button = document.createElement("BUTTON");
+        var btnText = document.createTextNode("REMOVE");
+        button.className = "remove";
+        var i;
+        for (i = 0; i < listTag.length; i++) {
+            button.appendChild(btnText);
+            listTag[i].appendChild(button);
+        }
+
+        //.....Function to remove Each Entries One by One.....
+
+        var remove = document.getElementsByClassName("remove");
+        var j;
+        for (j = 0; j < remove.length; j++) {
+            remove[j].onclick = function () {
+                var div = this.parentElement;
+                div.style.display = "none";
+            }
+        }
+    }
+
+
+
+
+
+</script>
+
+</html>
